@@ -81,6 +81,9 @@ exports.handler = async (
       imagesField = JSON.stringify(uniqueImageUrls);
     }
     
+    const itemIds = items.map((item: IProduct) => item.id);
+    const quantities = transformedItems.map((item: IProduct) => item.quantity);
+
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
       // Restrict allowed shipping countries to only include the selected shipping country
@@ -96,22 +99,12 @@ exports.handler = async (
         images: imagesField,
         title: JSON.stringify(
           items
-              .map((item: IProduct) => item.title)
-              .join(", ")
-              .slice(0, 400) + (items.length > 1 ? "..." : "")
+            .map((item: IProduct) => item.title)
+            .join(", ")
+            .slice(0, 400) + (items.length > 1 ? "..." : "")
         ),
-        itemIds: JSON.stringify(
-          items
-              .map((item: IProduct) => item.id)
-              .join(", ")
-              .slice(0, 400) + (items.length > 1 ? "..." : "")
-        ),
-        quantities: JSON.stringify(
-            transformedItems
-                .map((item: IProduct) => item.quantity)
-                .join(", ")
-                .slice(0, 400) + (transformedItems.length > 1 ? "..." : "")
-        ),      
+        itemIds: JSON.stringify(itemIds),
+        quantities: JSON.stringify(quantities),  
       },
     });
 
