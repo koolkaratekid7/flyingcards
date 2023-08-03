@@ -42,7 +42,7 @@ const Product: React.FC<Props> = ({ product }: Props) => {
     }
   };
 
-  if (quantity === 0 && session?.user.email !== process.env.NEXT_PUBLIC_AUTHORIZED_EMAIL) return null;
+  if (quantity <= 0 && session?.user.email !== process.env.NEXT_PUBLIC_AUTHORIZED_EMAIL) return null;
 
   return (
     <>

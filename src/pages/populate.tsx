@@ -1,17 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { GetServerSidePropsContext } from "next";
 import { getSession, useSession } from "next-auth/react";
 import Head from "next/head";
 import { IProduct, ISession } from "../../typings";
 import Header from "../components/Header";
-import { collection, getDocs, addDoc, updateDoc, deleteDoc, query, where } from 'firebase/firestore';
+import { collection, getDocs, addDoc, updateDoc, deleteDoc, query, where, serverTimestamp, doc } from 'firebase/firestore';
 import db from '../../firebase';
 import { useProductContext } from "components/context/ProductContext";
-
-
-type Props = {
-  products: IProduct[];
-};
 
 const Populate = () => {
   const { products, loading, error } = useProductContext();
@@ -34,6 +29,10 @@ const Populate = () => {
   const [editedProducts, setEditedProducts] = useState<IProduct[]>(products);
 
   const [removedProducts, setRemovedProducts] = useState<IProduct[]>([]);
+  
+  useEffect(() => {
+    setEditedProducts(products);
+  }, [products]);
   
   // Function to handle updating a field in the new product form
   const handleUpdateNewProductField = (field: keyof IProduct, value: string | number) => {
@@ -85,6 +84,23 @@ const Populate = () => {
       description: newProduct.description ?? '', // Set description to an empty string if it is undefined
       quantity: newProduct.quantity ?? 0, // Set quantity to 0 if it is undefined
     });
+    // Clear the input fields
+    setNewProduct({
+      id: '',
+      title: '',
+      price: 0,
+      description: '',
+      category: '',
+      image: '',
+      quantity: 0,
+    });
+  
+    // Update the last updated timestamp for the products collection
+    const lastUpdatedRef = collection(db, 'lastUpdated');
+    const lastUpdatedQuery = query(lastUpdatedRef, where('type', '==', 'products'));
+    const lastUpdatedSnapshot = await getDocs(lastUpdatedQuery);
+    const lastUpdatedDocRef = lastUpdatedSnapshot.docs[0]?.ref;
+    await updateDoc(lastUpdatedDocRef, { timestamp: serverTimestamp() });
   }
 
   // Function to handle submitting the changes
@@ -124,6 +140,14 @@ const Populate = () => {
         console.log(`No document found with id ${product.id}`);
       }
     }
+  
+    // Update the last updated timestamp for the products collection
+    const lastUpdatedRef = collection(db, 'lastUpdated');
+    const lastUpdatedQuery = query(lastUpdatedRef, where('type', '==', 'products'));
+    const lastUpdatedSnapshot = await getDocs(lastUpdatedQuery);
+    const lastUpdatedDocRef = lastUpdatedSnapshot.docs[0]?.ref;
+    await updateDoc(lastUpdatedDocRef, { timestamp: serverTimestamp() });
+
   } 
 
   return (
