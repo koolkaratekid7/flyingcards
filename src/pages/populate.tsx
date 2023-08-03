@@ -6,13 +6,15 @@ import { IProduct, ISession } from "../../typings";
 import Header from "../components/Header";
 import { collection, getDocs, addDoc, updateDoc, deleteDoc, query, where } from 'firebase/firestore';
 import db from '../../firebase';
+import { useProductContext } from "components/context/ProductContext";
 
 
 type Props = {
   products: IProduct[];
 };
 
-const Populate = ({ products }: Props) => {
+const Populate = () => {
+  const { products, loading, error } = useProductContext();
   const { data: session } = useSession();
 
   // Check if the logged-in user is authorized
@@ -313,23 +315,10 @@ export default Populate;
 export const getServerSideProps = async (
   context: GetServerSidePropsContext
 ) => {
-  const productsRef = collection(db, 'products');
-  const snapshot = await getDocs(productsRef);
-  const products = snapshot.docs.map(doc => doc.data());
-
   // Get user logged in credentials
   const session: ISession | null = await getSession(context);
-  if (!session) {
-    return {
-      props: {
-        products,
-      },
-    };
-  }
-
   return {
     props: {
-      products,
       session,
     },
   };
