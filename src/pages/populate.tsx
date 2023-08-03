@@ -83,8 +83,6 @@ const Populate = ({ products }: Props) => {
       description: newProduct.description ?? '', // Set description to an empty string if it is undefined
       quantity: newProduct.quantity ?? 0, // Set quantity to 0 if it is undefined
     });
-    // Refresh the page
-    location.reload();
   }
 
   // Function to handle submitting the changes
@@ -124,7 +122,6 @@ const Populate = ({ products }: Props) => {
         console.log(`No document found with id ${product.id}`);
       }
     }
-    location.reload();
   } 
 
   return (

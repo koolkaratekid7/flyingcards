@@ -4,19 +4,14 @@ import { IProduct } from '../../typings';
 import Banner from '../components/Banner';
 import Header from '../components/Header';
 import ProductFeed from '../components/ProductFeed';
-import { useProductContext } from '../components/context/ProductContext'; // Import the useProductContext
+import { useProductContext } from '../components/context/ProductContext';
 import { getSession } from 'next-auth/react';
-import { useFetchProducts } from '../hooks/UseFetchProducts'; // Import the useFetchProducts custom hook
 
 type Props = {
   products: IProduct[];
 };
 
 const Home = () => {
-  // Call the custom hook to set up the real-time listener and fetch data from Firebase
-  useFetchProducts();
-
-  // Use the product context to get the products and loading state
   const { products, loading, error } = useProductContext();
 
   return (

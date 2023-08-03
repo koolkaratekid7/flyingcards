@@ -9,30 +9,23 @@ import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import { selectItems } from "../slices/basketSlice";
 import { useEffect, useState } from "react";
+import { useCategories } from '../hooks/useCategories';
 
 type Props = {};
 
 const Header = (props: Props) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [categories, setCategories] = useState<string[]>([]);
+  const [searchQuery, setSearchQuery] = useState('');
   const { data: session, status } = useSession();
   const router = useRouter();
   const items = useSelector(selectItems);
-  const [searchQuery, setSearchQuery] = useState("");
+
+  // Use the categories custom hook to get the list of categories
+  const categories = useCategories();
 
   const handleSearch = () => {
     router.push(`/search?q=${searchQuery}`);
   };
-
-  useEffect(() => {
-    const fetchCategories = async () => {
-      const res = await fetch('/.netlify/functions/categories');
-      const categories = await res.json();
-      setCategories(categories);
-    };
-    
-    fetchCategories();
-  }, []);  
 
   return (
     <header>
@@ -40,7 +33,7 @@ const Header = (props: Props) => {
       <div className="flex items-center bg-[#1d2298] p-1 flex-grow py-2">
         <div className="h-12 flex items-center flex-grow sm:flex-grow-0">
           <Image
-            onClick={() => router.push("/")}
+            onClick={() => router.push('/')}
             className="cursor-pointer overflow-hidden mt-2"
             src="/flyingcards.png"
             width={150}
@@ -89,14 +82,14 @@ const Header = (props: Props) => {
             )}
           </div>
           <div
-            onClick={() => session && router.push("/orders")}
+            onClick={() => session && router.push('/orders')}
             className="cursor-pointer link"
           >
             <p>Returns</p>
             <p className="font-extrabold md:text-sm">& Orders</p>
           </div>
           <div
-            onClick={() => router.push("/checkout")}
+            onClick={() => router.push('/checkout')}
             className="relative link flex items-center"
           >
             <span className="absolute top-0 -right-2 md:right-10 w-4 h-4 bg-[#01C4CC] text-center rounded-full text-black font-bold">

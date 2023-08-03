@@ -1,18 +1,20 @@
-import { SessionProvider } from "next-auth/react";
-import type { AppProps } from "next/app";
-import { Provider } from "react-redux";
-import { store } from "../app/store";
-import "../styles/globals.css";
+import { SessionProvider } from 'next-auth/react';
+import type { AppProps } from 'next/app';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import { store, persistor } from '../app/store';
+import '../styles/globals.css';
+import Layout from '../components/Layout';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <SessionProvider
-      // Provider options are not required but can be useful in situations where
-      // you have a short session maxAge time. Shown here with default values.
-      session={pageProps.session}
-    >
+    <SessionProvider session={pageProps.session}>
       <Provider store={store}>
-        <Component {...pageProps} />
+        <PersistGate loading={null} persistor={persistor}>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </PersistGate>
       </Provider>
     </SessionProvider>
   );
