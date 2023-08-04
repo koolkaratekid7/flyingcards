@@ -58,7 +58,7 @@ export const useFetchOrders = (session: ISession | null) => {
         if (
           !lastUpdated ||
           !lastUpdatedData ||
-          lastUpdatedData.timestamp.toMillis() > lastUpdated
+          lastUpdatedData.timestamp.toMillis() !== lastUpdated
         ) {
           // Data has been updated, fetch it again from Firebase
           const ordersQuery = query(

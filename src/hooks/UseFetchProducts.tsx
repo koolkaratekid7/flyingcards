@@ -50,7 +50,7 @@ export const useFetchProducts = () => {
         if (
           !lastUpdated ||
           !lastUpdatedData ||
-          lastUpdatedData.timestamp.toMillis() > lastUpdated
+          lastUpdatedData.timestamp.toMillis() !== lastUpdated
         ) {
           // Data has been updated, fetch it again from Firebase
           const productsRef = collection(db, 'products');
