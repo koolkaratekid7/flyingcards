@@ -83,6 +83,8 @@ const Populate = () => {
       id: newId,
       description: newProduct.description ?? '', // Set description to an empty string if it is undefined
       quantity: newProduct.quantity ?? 0, // Set quantity to 0 if it is undefined
+      subcategory: newProduct.subcategory ?? '', // Set subcategory to an empty string if it is undefined
+      subsubcategory: newProduct.subsubcategory ?? '', // Set subsubcategory to an empty string if it is undefined
     });
     // Clear the input fields
     setNewProduct({
@@ -122,6 +124,8 @@ const Populate = () => {
           category: product.category,
           image: product.image,
           quantity: product.quantity,
+          subcategory: product.subcategory ?? '', // Set subcategory to an empty string if it is undefined
+          subsubcategory: product.subsubcategory ?? '', // Set subsubcategory to an empty string if it is undefined
         });
       }
     }
@@ -161,6 +165,7 @@ const Populate = () => {
             <title>Populate Products</title>
             <link rel="icon" href="/fcicon.ico" />
           </Head>
+          <h2>When adding or editing a product, please allow roughly 20 seconds before navigating away from this page.</h2>
           {/* New product form */}
           <div className="m-5 bg-white z-30 p-10">
             <h2>New Product</h2>
@@ -194,6 +199,24 @@ const Populate = () => {
               type="text"
               value={newProduct.category}
               onChange={e => handleUpdateNewProductField('category', e.target.value)}
+              className="border border-gray-300 rounded-md p-1"
+            />
+            <br />
+            {/* Input field for subcategory */}
+            <label>Subcategory:</label>
+            <input
+              type="text"
+              value={newProduct.subcategory}
+              onChange={e => handleUpdateNewProductField('subcategory', e.target.value)}
+              className="border border-gray-300 rounded-md p-1"
+            />
+            <br />
+            {/* Input field for subsubcategory */}
+            <label>Sub-subcategory:</label>
+            <input
+              type="text"
+              value={newProduct.subsubcategory}
+              onChange={e => handleUpdateNewProductField('subsubcategory', e.target.value)}
               className="border border-gray-300 rounded-md p-1"
             />
             <br />
@@ -270,6 +293,24 @@ const Populate = () => {
                   type="text"
                   value={product.category}
                   onChange={e => handleUpdateProductField(index, 'category', e.target.value)}
+                  className="border border-gray-300 rounded-md p-1"
+                />
+                <br />
+                {/* Input field for subcategory */}
+                <label>Subcategory:</label>
+                <input
+                  type="text"
+                  value={product.subcategory}
+                  onChange={e => handleUpdateProductField(index, 'subcategory', e.target.value)}
+                  className="border border-gray-300 rounded-md p-1"
+                />
+                <br />
+                {/* Input field for subsubcategory */}
+                <label>Sub-subcategory:</label>
+                <input
+                  type="text"
+                  value={product.subsubcategory}
+                  onChange={e => handleUpdateProductField(index, 'subsubcategory', e.target.value)}
                   className="border border-gray-300 rounded-md p-1"
                 />
                 <br />

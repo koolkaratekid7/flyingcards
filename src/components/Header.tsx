@@ -17,6 +17,8 @@ const Header = (props: Props) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const { data: session, status } = useSession();
+  const [openCategoryIndex, setOpenCategoryIndex] = useState<number | null>(null);
+  const [openSubcategoryIndex, setOpenSubcategoryIndex] = useState<number | null>(null);
   const router = useRouter();
   const items = useSelector(selectItems);
 
@@ -130,8 +132,46 @@ const Header = (props: Props) => {
         </div>
         {/* bottom nav */}
         <div className="flex items-center space-x-3 p-2 pl-6 bg-[#4c4fbd] text-white text-sm">
-          {categories.map(category => (
-            <p key={category} className="link" onClick={() => router.push(`/category/${category}`)}>{category}</p>
+          {categories.map((category, index) => (
+            <div
+              key={category.name}
+              className="relative"
+              onMouseEnter={() => setOpenCategoryIndex(index)}
+              onMouseLeave={() => setOpenCategoryIndex(null)}
+            >
+              <p className="link" onClick={() => router.push(`/category/${category.name}`)}>
+                {category.name}
+              </p>
+              
+              {/* Subcategory dropdown menu */}
+              {openCategoryIndex === index && category.subcategories.length > 0 && (
+                <div className="absolute top-full left-0 bg-[#4c4fbd] text-white p-2 rounded-md shadow-md">
+                  {category.subcategories.map((subcategory, index) => (
+                    <div
+                      key={subcategory.name}
+                      className="relative"
+                      onMouseEnter={() => setOpenSubcategoryIndex(index)}
+                      onMouseLeave={() => setOpenSubcategoryIndex(null)}
+                    >
+                      <p className="link" onClick={() => router.push(`/category/${category.name}/${subcategory.name}`)}>
+                        {subcategory.name}
+                      </p>
+                      
+                      {/* Sub-subcategory dropdown menu */}
+                      {openSubcategoryIndex === index && subcategory.subsubcategories.length > 0 && (
+                        <div className="absolute top-0 left-full bg-[#4c4fbd] text-white p-2 rounded-md shadow-md">
+                          {subcategory.subsubcategories.map(subsubcategory => (
+                            <p key={subsubcategory} className="link" onClick={() => router.push(`/category/${category.name}/${subcategory.name}/${subsubcategory}`)}>
+                              {subsubcategory}
+                            </p>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
           ))}
         </div>
       </div>
