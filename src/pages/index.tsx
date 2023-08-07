@@ -18,7 +18,6 @@ const Home = () => {
     <div className="bg-gray-100">
       <Head>
         <title>Flying Cards</title>
-        <link rel="icon" href="/fcicon.ico" />
       </Head>
       <Header />
       <main className="max-w-screen-2xl mx-auto">

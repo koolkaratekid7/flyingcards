@@ -5,6 +5,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { store, persistor } from '../app/store';
 import '../styles/globals.css';
 import Layout from '../components/Layout';
+import Head from 'next/head';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -12,6 +13,9 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <Layout>
+            <Head>
+              <link rel="icon" href="/fcicon.ico" />
+            </Head>
             <Component {...pageProps} />
           </Layout>
         </PersistGate>
