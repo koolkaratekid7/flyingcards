@@ -1,3 +1,4 @@
+// _app.tsx
 import { SessionProvider } from 'next-auth/react';
 import type { AppProps } from 'next/app';
 import { Provider } from 'react-redux';
@@ -7,6 +8,7 @@ import '../styles/globals.css';
 import Layout from '../components/Layout';
 import Head from 'next/head';
 import Ad from '../components/Ads';
+import Footer from '../components/Footer';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -21,6 +23,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             </Head>
             <Ad />
             <Component {...pageProps} />
+            <Footer />
           </Layout>
         </PersistGate>
       </Provider>

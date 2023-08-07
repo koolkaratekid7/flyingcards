@@ -21,7 +21,7 @@ const SearchPage = () => {
     <div className="bg-gray-100">
       <Header />
       <main className="max-w-screen-2xl mx-auto">
-        <h1 className="text-3xl font-bold mt-4 mb-6">Search results for "{q}"</h1>
+        <h1 className="text-3xl font-bold mt-4 mb-6 text-center">Search results for "{q}"</h1>
         {/* Pass the filtered list of products to the ProductFeed component */}
         <ProductFeed products={filteredProducts} />
       </main>
