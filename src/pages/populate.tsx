@@ -11,9 +11,18 @@ import { useProductContext } from "components/context/ProductContext";
 const Populate = () => {
   const { products, loading, error } = useProductContext();
   const { data: session } = useSession();
+  
+  if (!process.env.NEXT_PUBLIC_AUTHORIZED_EMAIL) {
+    console.error('NEXT_PUBLIC_AUTHORIZED_EMAIL environment variable is not set');
+    return null;
+  }
+  
+  const authorizedEmails = process.env.NEXT_PUBLIC_AUTHORIZED_EMAIL.includes(',')
+    ? process.env.NEXT_PUBLIC_AUTHORIZED_EMAIL.split(',')
+    : [process.env.NEXT_PUBLIC_AUTHORIZED_EMAIL];
 
   // Check if the logged-in user is authorized
-  const isAuthorized = session?.user.email === process.env.NEXT_PUBLIC_AUTHORIZED_EMAIL;
+  const isAuthorized = authorizedEmails.includes(session?.user.email as string);
 
   const [newProduct, setNewProduct] = useState<IProduct>({
     id: '',

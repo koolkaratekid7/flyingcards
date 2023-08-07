@@ -9,9 +9,7 @@ type Props = {
 const ProductFeed: React.FC<Props> = ({ products }: Props) => {
   // Add a null check for products
   if (!products || products.length === 0) {
-    // Return a loading indicator or null if products is undefined, null, or empty
-    // You can customize the loading indicator here
-    return <p>Loading...</p>;
+    return <p>No Products Found</p>;
   }
 
   const [currentPage, setCurrentPage] = useState(1);
