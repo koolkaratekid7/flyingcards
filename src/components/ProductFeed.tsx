@@ -34,7 +34,7 @@ const ProductFeed: React.FC<Props> = ({ products }: Props) => {
       <p className="text-center">
         Page {currentPage} of {maxPage}
       </p>
-      <nav className="bg-gray-100">
+      <nav style={{ backgroundColor: "#F3F4F6" }}>
         <ul className="pagination">
           {currentPage > 1 && (
             <li className="page-item">
