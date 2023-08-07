@@ -33,10 +33,6 @@ const Orders = ({}: Props) => {
         ) : (
           <h2>Please sign in to see your orders</h2>
         )}
-        <p>
-          If you have an issue inquiry, please email me at{" "}
-          <a href="mailto:flyingcards@gmail.com">flyingcards@gmail.com</a>. Please include your Order ID if it's related to your order.
-        </p>
         <div className="mt-5 space-y-4">
           {orders?.map((order) => (
             <Order key={order.id} order={order} />

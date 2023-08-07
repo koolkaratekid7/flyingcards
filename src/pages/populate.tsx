@@ -104,6 +104,8 @@ const Populate = () => {
       category: '',
       image: '',
       quantity: 0,
+      subcategory: '',
+      subsubcategory: '',
     });
   
     // Update the last updated timestamp for the products collection

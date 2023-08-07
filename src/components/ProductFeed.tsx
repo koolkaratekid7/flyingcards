@@ -34,7 +34,7 @@ const ProductFeed: React.FC<Props> = ({ products }: Props) => {
       <p className="text-center">
         Page {currentPage} of {maxPage}
       </p>
-      <nav style={{ backgroundColor: "#F3F4F6" }}>
+      <nav>
         <ul className="pagination">
           {currentPage > 1 && (
             <li className="page-item">
@@ -59,15 +59,16 @@ const ProductFeed: React.FC<Props> = ({ products }: Props) => {
           )}
         </ul>
       </nav>
+      <br />
       <style jsx>{`
         .pagination {
           display: flex;
           list-style: none;
-          margin: 0;
-          padding: 0;
+          margin: 0 auto;
+          padding: 10px;
           justify-content: center;
-          margin-bottom: 20px;
           margin-top: 5px;
+          max-width: 80%;
         }
         .page-item {
           margin-right: 0.25rem;
@@ -78,9 +79,24 @@ const ProductFeed: React.FC<Props> = ({ products }: Props) => {
           background-color: #1d2298;
           border-radius: 5px;
           padding: 5px;
+          min-width: 2.5rem;
+          min-height: 2.5rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
         .page-link:hover {
           background-color: #3d4298;
+        }
+        
+        @media (max-width: 600px) {
+            .pagination {
+                flex-wrap: wrap;
+                max-width: none;
+            }
+            .page-item {
+                margin-bottom: 0.25rem;
+            }
         }
       `}</style>
     </>
