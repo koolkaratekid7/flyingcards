@@ -22,6 +22,7 @@ const Home = () => {
       <Header />
       <main className="max-w-screen-2xl mx-auto">
         <Banner />
+        <h1 className="text-3xl font-bold mt-4 mb-6">Flying Cards</h1>
         {/* Use the context products */}
         <ProductFeed products={products} />
       </main>

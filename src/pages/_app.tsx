@@ -16,7 +16,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           <Layout>
             <Head>
               <link rel="icon" href="/fcicon.ico" />
-              <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+              <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5406034099856189"
                 crossOrigin="anonymous"></script>
             </Head>
             <Ad />

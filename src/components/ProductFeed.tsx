@@ -25,7 +25,7 @@ const ProductFeed: React.FC<Props> = ({ products }: Props) => {
 
   return (
     <>
-      <div className="flex flex-wrap justify-center -mt-10 md:-mt-52 lg:-mt-75 xl:-mt-80 mx-auto">
+      <div className="flex flex-wrap justify-center mx-auto">
         {currentProducts.map((product) => (
           <Product key={product.id} product={product} />
         ))}
