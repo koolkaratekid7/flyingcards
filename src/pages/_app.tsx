@@ -6,6 +6,7 @@ import { store, persistor } from '../app/store';
 import '../styles/globals.css';
 import Layout from '../components/Layout';
 import Head from 'next/head';
+import Ad from '../components/Ads';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -15,7 +16,10 @@ function MyApp({ Component, pageProps }: AppProps) {
           <Layout>
             <Head>
               <link rel="icon" href="/fcicon.ico" />
+              <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+                crossOrigin="anonymous"></script>
             </Head>
+            <Ad />
             <Component {...pageProps} />
           </Layout>
         </PersistGate>
