@@ -83,26 +83,32 @@ const Header = (props: Props) => {
               </button>
             )}
           </div>
-          <div
-            onClick={() => session && router.push('/orders')}
-            className="cursor-pointer link"
-          >
-            <p>Returns</p>
-            <p className="font-extrabold md:text-sm">& Orders</p>
-          </div>
-          <div
-            onClick={() => router.push('/checkout')}
-            className="relative link flex items-center"
-          >
-            <span className="absolute top-0 -right-2 md:right-10 w-4 h-4 bg-[#01C4CC] text-center rounded-full text-black font-bold">
-              {items.length}
-            </span>
+            {session ? (
+            <>
+              <div
+                onClick={() => session && router.push('/orders')}
+                className="cursor-pointer link"
+              >
+                <p>Returns</p>
+                <p className="font-extrabold md:text-sm">& Orders</p>
+              </div>
+            </>
+            ) : (
+              <div></div>
+            )}
+            <div
+              onClick={() => router.push('/checkout')}
+              className="relative link flex items-center"
+            >
+              <span className="absolute top-0 -right-2 md:right-10 w-4 h-4 bg-[#01C4CC] text-center rounded-full text-black font-bold">
+                {items.length}
+              </span>
 
-            <ShoppingCartIcon className="h-10" />
-            <p className="hidden md:inline font-extrabold text-sm mt-2">
-              Basket
-            </p>
-          </div>
+              <ShoppingCartIcon className="h-10" />
+              <p className="hidden md:inline font-extrabold text-sm mt-2">
+                Basket
+              </p>
+            </div>
         </div>
       </div>
       {/* mobile search and Banner*/}
