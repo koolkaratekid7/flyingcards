@@ -29,15 +29,17 @@ const Orders = ({}: Props) => {
           Your Orders
         </h1>
         {session ? (
-          <h2>{orders.length} Orders</h2>
+          <>
+            <h2>{orders.length} Orders</h2>
+            <div className="mt-5 space-y-4">
+              {orders?.map((order) => (
+                <Order key={order.id} order={order} />
+              ))}
+            </div>
+          </>
         ) : (
           <h2>Please sign in to see your orders</h2>
         )}
-        <div className="mt-5 space-y-4">
-          {orders?.map((order) => (
-            <Order key={order.id} order={order} />
-          ))}
-        </div>
       </main>
     </div>
   );
