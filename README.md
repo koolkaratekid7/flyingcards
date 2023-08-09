@@ -8,4 +8,4 @@ This website was created by **TheReconJacob** from **Fiverr**. If you want to pu
 - **Stripe integration** for easy and secure payments.
 - **Option to have Google Ads implemented** to monetize your website.
 
-Get your own professional and fully customizable website today by visiting [TheReconJacob's Fiverr page](https://www.fiverr.com/thereconjacob)!
+Get your own professional and fully customizable website today by visiting [TheReconJacob's Fiverr page](https://www.fiverr.com/thereconjacob/create-a-cheap-easy-to-use-ecommerce-website-with-zero-maintenance-costs)!

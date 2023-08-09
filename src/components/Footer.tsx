@@ -12,7 +12,7 @@ const Footer = (props: Props) => {
           <h4 className="font-bold mb-2">Website Development</h4>
           <ul>
             <li>
-              <Link href="https://www.fiverr.com/thereconjacob">
+              <Link href="https://www.fiverr.com/thereconjacob/create-a-cheap-easy-to-use-ecommerce-website-with-zero-maintenance-costs">
                 <a>Get your own low maintenance e-commerce website</a>
               </Link>
             </li>
