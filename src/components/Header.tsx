@@ -144,9 +144,18 @@ const Header = (props: Props) => {
               className="relative"
               onMouseEnter={() => setOpenCategoryIndex(index)}
               onMouseLeave={() => setOpenCategoryIndex(null)}
+              onTouchStart={() => setOpenCategoryIndex(index)}
             >
-              <p className="link" onClick={() => router.push(`/category/${category.name}`)}>
-                {category.name}
+              <p className="link" onClick={() => router.push(`/category/${category.name}`)}
+                style={{
+                  WebkitTouchCallout: 'none',
+                  WebkitUserSelect: 'none',
+                  KhtmlUserSelect: 'none',
+                  MozUserSelect: 'none',
+                  msUserSelect: 'none',
+                  userSelect: 'none',
+                }}>
+                  {category.name}
               </p>
               
               {/* Subcategory dropdown menu */}
@@ -158,8 +167,17 @@ const Header = (props: Props) => {
                       className="relative"
                       onMouseEnter={() => setOpenSubcategoryIndex(index)}
                       onMouseLeave={() => setOpenSubcategoryIndex(null)}
+                      onTouchStart={() => setOpenSubcategoryIndex(index)}
                     >
-                      <p className="link" onClick={() => router.push(`/category/${category.name}/${subcategory.name}`)}>
+                      <p className="link" onClick={() => router.push(`/category/${category.name}/${subcategory.name}`)}
+                        style={{
+                          WebkitTouchCallout: 'none',
+                          WebkitUserSelect: 'none',
+                          KhtmlUserSelect: 'none',
+                          MozUserSelect: 'none',
+                          msUserSelect: 'none',
+                          userSelect: 'none',
+                        }}>
                         {subcategory.name}
                       </p>
                       
